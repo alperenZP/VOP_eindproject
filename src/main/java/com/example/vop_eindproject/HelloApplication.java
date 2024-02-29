@@ -5,43 +5,37 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.scene.text.Font;
 
 import java.io.IOException;
+
 
 public class HelloApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Scene scene;
-        VBox root;
-        ListView<String> lijstView;
-        ObservableList<String> observableLijst = FXCollections.observableArrayList();
-        Label keuze;
+        //*********Items**********
+        Label title = new Label("ROBOTS");
+        title.setTextFill(Color.ROYALBLUE);
+        title.setFont(new Font(30));
+        Button startButton = new Button("Start");
+        Button exitButton = new Button("Sluit af");
 
-        root = new VBox(5);
-        scene = new Scene(root, 320, 240);
-        lijstView = new ListView<String>();
-        observableLijst.addAll("Berlijn", "Brussel", "Madrid", "Moskou", "Helsinki");
-        lijstView.setItems(observableLijst);
-        lijstView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        keuze = new Label();
-        lijstView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                keuze.setText(lijstView.getSelectionModel().getSelectedItem());
-            }
-        });
-
-
-        root.getChildren().addAll(lijstView, keuze);
-        primaryStage.setTitle("Demo lijsten");
-        primaryStage.setScene(scene);
+        //**********Container*********
+        VBox root = new VBox(5);
+        root.setAlignment(Pos.TOP_CENTER);
+        root.getChildren().addAll(title, startButton, exitButton);
+        primaryStage.setTitle("Startpagina");
+        primaryStage.setScene(new Scene(root, 430, 435));
         primaryStage.show();
     }
 

@@ -25,17 +25,23 @@ public class HelloApplication extends Application {
     public void start(Stage primaryStage) throws IOException {
         //*********Items**********
         Label title = new Label("ROBOTS");
-        title.setTextFill(Color.ROYALBLUE);
-        title.setFont(new Font(30));
+            title.setTextFill(Color.ROYALBLUE);
+            title.setFont(new Font(150));
+
+        Label credit = new Label("Door Alperen Tok");
+            credit.setTextFill(Color.MAROON);
+
         Button startButton = new Button("Start");
+            startButton.setMinSize(200, 50);
         Button exitButton = new Button("Sluit af");
+            exitButton.setMinSize(200, 50);
 
         //**********Container*********
         VBox root = new VBox(5);
         root.setAlignment(Pos.TOP_CENTER);
-        root.getChildren().addAll(title, startButton, exitButton);
+        root.getChildren().addAll(title, credit,startButton, exitButton);
         primaryStage.setTitle("Startpagina");
-        primaryStage.setScene(new Scene(root, 430, 435));
+        primaryStage.setScene(new Scene(root, 800, 450));
         primaryStage.show();
     }
 

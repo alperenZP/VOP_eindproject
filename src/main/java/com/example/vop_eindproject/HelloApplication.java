@@ -33,6 +33,14 @@ public class HelloApplication extends Application {
 
         Button startButton = new Button("Start");
             startButton.setMinSize(200, 50);
+
+        startButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+            }
+        });
+
+
         Button exitButton = new Button("Sluit af");
             exitButton.setMinSize(200, 50);
 

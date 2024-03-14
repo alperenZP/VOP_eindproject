@@ -1,3 +1,5 @@
+package com.example.vop_eindproject;
+
 public class Lichaam {
     private String modelNaam;
     private Kleur verfkleur;

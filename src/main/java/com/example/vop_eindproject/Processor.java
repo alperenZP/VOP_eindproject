@@ -1,3 +1,5 @@
+package com.example.vop_eindproject;
+
 import java.math.BigDecimal;
 
 public class Processor {

@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import javafx.scene.text.Font;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 
 public class HelloApplication extends Application {
@@ -40,9 +41,16 @@ public class HelloApplication extends Application {
         startButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                ObservableList<Robot> robots = FXCollections.emptyObservableList();
+                ObservableList<Robot> robots = getRobotsList();
                 RobotListScreen.makeRobotStage().show();
                 primaryStage.hide();
+            }
+        });
+
+        exitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                primaryStage.close();
             }
         });
 
@@ -56,6 +64,16 @@ public class HelloApplication extends Application {
         primaryStage.setTitle("Startpagina");
         primaryStage.setScene(new Scene(root, 850, 478));
         primaryStage.show();
+    }
+
+    private ObservableList<Robot> getRobotsList(){
+        Lichaam lichaam1 = new Lichaam("AxTax", Kleur.BLAUW, 0,0);
+        OpslagSchijf opslagSchijf = new OpslagSchijf("Dragon", 600, 0);
+        Processor processor1 = new Processor("Dreebl", 16, BigDecimal.valueOf(689.555), 4, "Intel");
+        Robot robot1 = new Robot("284303", "Randy", BigDecimal.valueOf(0.89), true, lichaam1, opslagSchijf, processor1);
+
+        ObservableList<Robot> robots = FXCollections.observableArrayList(robot1);
+        return robots;
     }
 
     public static void main(String[] args) {

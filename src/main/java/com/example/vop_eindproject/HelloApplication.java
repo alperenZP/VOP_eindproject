@@ -34,22 +34,27 @@ public class HelloApplication extends Application {
         Button startButton = new Button("Start");
             startButton.setMinSize(200, 50);
 
+        Button exitButton = new Button("Sluit af");
+        exitButton.setMinSize(200, 50);
+
         startButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                ObservableList<Robot> robots = FXCollections.emptyObservableList();
+                RobotListScreen.makeRobotStage().show();
+                primaryStage.hide();
             }
         });
 
 
-        Button exitButton = new Button("Sluit af");
-            exitButton.setMinSize(200, 50);
+
 
         //**********Container*********
         VBox root = new VBox(5);
         root.setAlignment(Pos.TOP_CENTER);
         root.getChildren().addAll(title, credit,startButton, exitButton);
         primaryStage.setTitle("Startpagina");
-        primaryStage.setScene(new Scene(root, 800, 450));
+        primaryStage.setScene(new Scene(root, 850, 478));
         primaryStage.show();
     }
 

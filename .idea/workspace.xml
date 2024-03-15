@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9ceb816a-ff01-4a24-94ac-08c45aeb7b9f" name="Changes" comment="added stuff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/HelloApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/RobotListScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/RobotListScreen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +91,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710418202183</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added stuff">
+      <option name="closed" value="true" />
+      <created>1710420079933</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1710420079933</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

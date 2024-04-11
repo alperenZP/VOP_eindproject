@@ -24,7 +24,7 @@ import java.math.BigDecimal;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
-        //*********Items**********
+        //*********Itemfs**********
         Label title = new Label("ROBOTS");
             title.setTextFill(Color.ROYALBLUE);
             title.setFont(new Font(150));

@@ -2,17 +2,23 @@ package com.example.vop_eindproject;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+
+import static com.example.vop_eindproject.AddRobotScreen.makeAddRobotStage;
+import static com.example.vop_eindproject.EditRobotScreen.makeEditRobotStage;
 
 public class RobotListScreen {
     public static Stage makeRobotStage(ObservableList<Robot> robots) {
@@ -61,6 +67,31 @@ public class RobotListScreen {
         Button returnButton = new Button("Terug");
             returnButton.setMinSize(200, 50);
 
+
+        createButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                Stage addRobotStage =
+                        makeAddRobotStage(robots);
+                addRobotStage.show();
+            }
+
+        });
+
+        editButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                // Close the RobotListScreen stage
+                robotListStage.close();
+
+                // Open the EditRobotScreen stage
+                Stage editRobotStage = makeEditRobotStage(tableView.getSelectionModel().getSelectedItem(), robots, tableView);
+                editRobotStage.show();
+            }
+        });
+
+
+
         VBox robotsContainer = new VBox(2);
         robotsContainer.setPadding(new Insets(15));
         VBox tableContainer = new VBox();
@@ -72,7 +103,17 @@ public class RobotListScreen {
                 editButton, returnButton);
         robotListStage.setTitle("List");
         robotListStage.setScene(new Scene(robotsContainer, 850, 478));
+
         return (robotListStage);
     }
+
+    public static void refreshList(ObservableList<Robot> updatedRobots, TableView<Robot> tableView) {
+        // Clear the items in the TableView
+        tableView.getItems().clear();
+        // Add the updated items to the TableView
+        tableView.setItems(updatedRobots);
+    }
+
+
 
 }

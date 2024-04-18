@@ -1,5 +1,7 @@
 package com.example.vop_eindproject;
 
+import javafx.scene.paint.Color;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.TreeMap;
@@ -53,6 +55,16 @@ public class Robot {
         }
 
         return gebruiktOpslag + "/" + maxOpslag;
+    }
+
+    public int geefMaxOpslag(){
+        int maxOpslag = 0;
+
+        for (int i = 0; i < opslagSchijven.size(); i++) {
+            maxOpslag += opslagSchijven.get(i).getMaxOpslag();
+        }
+
+        return maxOpslag;
     }
 
     public boolean isActief() {
@@ -133,5 +145,48 @@ public class Robot {
                 dataHasntBeenSaved = false;
             }
         }
+    }
+
+    public Color geefKleur(){
+        return lichaam.getVerfkleur();
+    }
+    public String geefProcessorNaam(){
+        return processor.getModelNaam();
+    }
+
+    public void setProcessorNaam(String naam){
+        processor.setModelNaam(naam);
+    }
+    public int geefAantalCores(){
+        return processor.getAantalCores();
+    }
+
+    public int geefCacheOpslag(){
+        return processor.getCacheOpslag();
+    }
+    public String geefOpslagSchijfNaam(){
+        return opslagSchijven.get(0).getModelNaam();
+    }
+
+    public void setAantalCores(int aantalCores) {
+        processor.setAantalCores(aantalCores);
+    }
+
+    public void setCacheOpslag(int cacheOpslag) {
+        processor.setCacheOpslag(cacheOpslag);
+    }
+
+    public void setOpslagSchijfNaam(String modelNaam) {
+        opslagSchijven.get(0).setModelNaam(modelNaam);
+    }
+
+    public void setMaxOpslag(int newOpslag){
+        while (newOpslag > geefMaxOpslag()){
+            opslagSchijven.get(0).setMaxOpslag(opslagSchijven.get(0).getMaxOpslag() + 1);
+        }
+    }
+
+    public void setKleur(Color kleur){
+        lichaam.setVerfkleur(kleur);
     }
 }

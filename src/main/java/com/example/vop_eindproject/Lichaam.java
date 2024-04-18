@@ -1,12 +1,14 @@
 package com.example.vop_eindproject;
 
+import javafx.scene.paint.Color;
+
 public class Lichaam {
     private String modelNaam;
-    private Kleur verfkleur;
+    private Color verfkleur;
     private int positieX;
     private int positieY;
 
-    public Lichaam(String modelNaam, Kleur verfkleur, int positieX, int positieY) {
+    public Lichaam(String modelNaam, Color verfkleur, int positieX, int positieY) {
         this.modelNaam = modelNaam;
         this.verfkleur = verfkleur;
         this.positieX = positieX;
@@ -17,11 +19,11 @@ public class Lichaam {
         return modelNaam;
     }
 
-    public Kleur getVerfkleur() {
+    public Color getVerfkleur() {
         return verfkleur;
     }
 
-    public void setVerfkleur(Kleur verfkleur) {
+    public void setVerfkleur(Color verfkleur) {
         this.verfkleur = verfkleur;
     }
 

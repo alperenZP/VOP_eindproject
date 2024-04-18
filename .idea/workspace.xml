@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ceb816a-ff01-4a24-94ac-08c45aeb7b9f" name="Changes" comment="added stuff">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/EditRobotScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/AddRobotScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/AddRobotScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/Kleur.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/Lichaam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/Lichaam.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/Robot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/RobotListScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/RobotListScreen.java" afterDir="false" />
     </list>
@@ -79,6 +82,12 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <module name="VOP_eindproject" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -165,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1712871555455</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="added stuff">
+      <created>1713460266422</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1713460266422</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

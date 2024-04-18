@@ -43,6 +43,18 @@ public class Robot {
         this.accuPercentage = accuPercentage;
     }
 
+    public String geefOpslagGegevens(){
+        int maxOpslag = 0;
+        int gebruiktOpslag = 0;
+
+        for (int i = 0; i < opslagSchijven.size(); i++) {
+            maxOpslag += opslagSchijven.get(i).getMaxOpslag();
+            gebruiktOpslag += opslagSchijven.get(i).getGebruikteOpslag();
+        }
+
+        return gebruiktOpslag + "/" + maxOpslag;
+    }
+
     public boolean isActief() {
         return isActief;
     }
@@ -101,6 +113,10 @@ public class Robot {
         } else {
             return null;
         }
+    }
+
+    public void voegOpslagSchijfToe(OpslagSchijf opslagSchijf){
+        this.opslagSchijven.add(opslagSchijf);
     }
 
     public void slaDataOp(String data){

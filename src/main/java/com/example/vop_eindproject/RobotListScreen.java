@@ -1,5 +1,7 @@
 package com.example.vop_eindproject;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -10,29 +12,45 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 public class RobotListScreen {
-    public static Stage makeRobotStage() {
+    public static Stage makeRobotStage(ObservableList<Robot> robots) {
         Stage robotListStage = new Stage();
 
-        TableView<Robot> tableView = new TableView<Robot>();
-        TableColumn<Robot, String> naamKolom =
-                new TableColumn<Robot, String>("Naam");
-        TableColumn<Robot, String> accuKolom =
-                new TableColumn<Robot, String>("Accu");
-        TableColumn<Robot, String> opslagKolom =
-                new TableColumn<Robot, String>("Opslag");
-        TableColumn<Robot, String> plaatsKolom =
-                new TableColumn<Robot, String>("Coördinaten");
-        tableView.setMinWidth(800);
-        tableView.setMinHeight(250);
-        tableView.getColumns().addAll(naamKolom, accuKolom, opslagKolom, plaatsKolom);
-        naamKolom.setCellValueFactory(new PropertyValueFactory("naam"));
-        accuKolom.setCellValueFactory(new PropertyValueFactory("accu"));
-        opslagKolom.setCellValueFactory(new PropertyValueFactory("opslag"));
-        plaatsKolom.setCellValueFactory(new PropertyValueFactory("plaats"));
+        TableView<Robot> tableView = new TableView<>();
+        // Define table columns
+        TableColumn<Robot, String> naamKolom = new TableColumn<>("Naam");
+        TableColumn<Robot, String> accuKolom = new TableColumn<>("Accu");
+        TableColumn<Robot, String> opslagKolom = new TableColumn<>("Opslag");
+        TableColumn<Robot, String> plaatsKolom = new TableColumn<>("Coördinaten");
 
+        // Set cell value factories
+        naamKolom.setCellValueFactory(new PropertyValueFactory<>("naam"));
+        accuKolom.setCellValueFactory(new PropertyValueFactory<>("accuPercentage"));
+
+        // Define cell value factory for opslagKolom using custom Callback
+        opslagKolom.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Robot, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Robot, String> param) {
+                return new SimpleStringProperty(param.getValue().geefOpslagGegevens());
+            }
+        });
+
+        plaatsKolom.setCellValueFactory(new PropertyValueFactory<>("plaats"));
+
+        plaatsKolom.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Robot, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Robot, String> param) {
+                return new SimpleStringProperty(param.getValue().geefHuidigeLocatie());
+            }
+        });
+
+        // Add columns to table view
+        tableView.getColumns().addAll(naamKolom, accuKolom, opslagKolom, plaatsKolom);
+        tableView.setItems(robots);
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
 
         Button createButton = new Button("Creëren");
             createButton.setMinSize(200,50);

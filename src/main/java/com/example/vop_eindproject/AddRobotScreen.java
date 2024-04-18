@@ -42,7 +42,7 @@ public class AddRobotScreen {
         //***toevoegenKnop***
         Button toevoegenKnop = new Button("Toevoegen");
         addRobotContainer.add(toevoegenKnop, 0, 5);
-        toevoegenKnop.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        /*toevoegenKnop.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 lijst.add(new Vereniging(naamVeld.getText(),
@@ -51,7 +51,7 @@ public class AddRobotScreen {
                         adresVeld.getText()));
                 addRobotStage.close();
             }
-        });
+        });*/
         addRobotStage.setTitle("Vereniging toevoegen");
         addRobotStage.setScene(
                 new Scene(addRobotContainer, 800, 400));

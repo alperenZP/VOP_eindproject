@@ -42,7 +42,7 @@ public class HelloApplication extends Application {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 ObservableList<Robot> robots = getRobotsList();
-                RobotListScreen.makeRobotStage().show();
+                RobotListScreen.makeRobotStage(robots).show();
                 primaryStage.hide();
             }
         });
@@ -67,11 +67,11 @@ public class HelloApplication extends Application {
     }
 
     private ObservableList<Robot> getRobotsList(){
-        Lichaam lichaam1 = new Lichaam("AxTax", Kleur.BLAUW, 0,0);
-        OpslagSchijf opslagSchijf = new OpslagSchijf("Dragon", 600, 0);
+        Lichaam lichaam1 = new Lichaam("AxTax", Kleur.BLAUW, 0,20);
+        OpslagSchijf opslagSchijf = new OpslagSchijf("Dragon", 600, 53);
         Processor processor1 = new Processor("Dreebl", 16, BigDecimal.valueOf(689.555), 4, "Intel");
         Robot robot1 = new Robot("284303", "Randy", BigDecimal.valueOf(0.89), true, lichaam1, opslagSchijf, processor1);
-
+        robot1.voegOpslagSchijfToe(opslagSchijf);
         ObservableList<Robot> robots = FXCollections.observableArrayList(robot1);
         return robots;
     }

@@ -19,6 +19,7 @@ import javafx.util.Callback;
 
 import static com.example.vop_eindproject.AddRobotScreen.makeAddRobotStage;
 import static com.example.vop_eindproject.EditRobotScreen.makeEditRobotStage;
+import static com.example.vop_eindproject.controlRobotScreen.makeControlRobotStage;
 
 public class RobotListScreen {
     public static Stage makeRobotStage(ObservableList<Robot> robots) {
@@ -74,6 +75,16 @@ public class RobotListScreen {
                 Stage addRobotStage =
                         makeAddRobotStage(robots);
                 addRobotStage.show();
+            }
+
+        });
+
+        controlButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                Stage controlRobotStage =
+                        makeControlRobotStage(tableView.getSelectionModel().getSelectedItem(), robots, tableView);
+                controlRobotStage.show();
             }
 
         });

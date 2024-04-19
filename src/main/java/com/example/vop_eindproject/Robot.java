@@ -4,6 +4,7 @@ import javafx.scene.paint.Color;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.TreeMap;
 
 public class Robot {
@@ -118,10 +119,23 @@ public class Robot {
         return "X positie: " + lichaam.getPositieX() + "\nY positie: " + lichaam.getPositieY();
     }
 
-    public Integer maakBerekening(int getal1, int getal2, Teken teken){
+    public Integer maakBerekening(int getal1, int getal2, String teken){
+        Teken neket;
+        if (Objects.equals(teken, "+")){
+            neket = Teken.PLUS;
+        } else if (Objects.equals(teken, "-")) {
+            neket = Teken.MINUS;
+        } else if (Objects.equals(teken, "/")) {
+            neket = Teken.VERDEEL;
+        } else if (Objects.equals(teken, "*")){
+            neket = Teken.VERMENIGVULDIG;
+        } else {
+            neket = Teken.PLUS;
+        }
+
         if (isActief && (accuPercentage.compareTo(BigDecimal.ZERO) > 0)){
             accuPercentage = accuPercentage.subtract(BigDecimal.valueOf(0.01));
-            return processor.bereken(getal1, getal2, teken);
+            return processor.bereken(getal1, getal2, neket);
         } else {
             return null;
         }

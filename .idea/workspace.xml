@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ceb816a-ff01-4a24-94ac-08c45aeb7b9f" name="Changes" comment="added stuff">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/AddRobotScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/AddRobotScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/EditRobotScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/EditRobotScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/Processor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/Processor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/Robot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/RobotListScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/RobotListScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/controlRobotScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/controlRobotScreen.java" afterDir="false" />
@@ -85,17 +89,6 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <module name="VOP_eindproject" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -219,6 +212,11 @@
           <properties class="java.lang.IllegalStateException" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/vop_eindproject/Robot.java</url>
+          <line>132</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

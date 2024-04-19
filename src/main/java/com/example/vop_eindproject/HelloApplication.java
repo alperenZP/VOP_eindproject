@@ -4,13 +4,10 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -70,8 +67,7 @@ public class HelloApplication extends Application {
         Lichaam lichaam1 = new Lichaam("AxTax", Color.MAROON, 0,20);
         OpslagSchijf opslagSchijf = new OpslagSchijf("Dragon", 600, 53);
         Processor processor1 = new Processor("Dreebl", 16, BigDecimal.valueOf(689.555), 4, "Intel");
-        Robot robot1 = new Robot("284303", "Randy", BigDecimal.valueOf(0.05), true, lichaam1, opslagSchijf, processor1);
-        robot1.voegOpslagSchijfToe(opslagSchijf);
+        Robot robot1 = new Robot("284303", "Randy", BigDecimal.valueOf(0.15), true, lichaam1, opslagSchijf, processor1);
         ObservableList<Robot> robots = FXCollections.observableArrayList(robot1);
         return robots;
     }

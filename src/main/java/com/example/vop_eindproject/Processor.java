@@ -81,7 +81,11 @@ public class Processor {
                 return getal1 * getal2;
             }
             case VERDEEL -> {
-                return getal1 / getal2;
+                if (getal2 != 0){
+                    return getal1 / getal2;
+                } else {
+                    return null;
+                }
             }
             default -> {
                 return null;

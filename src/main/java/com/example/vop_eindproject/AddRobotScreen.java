@@ -44,12 +44,12 @@ public class AddRobotScreen {
         //***Aantal Cores***
         Label aantalCoresLabel = new Label("Aantal cores: ");
         addRobotContainer.add(aantalCoresLabel, 0, 4);
-        Spinner<Integer> aantalCoresSpinner = new Spinner<>(1, 100, 1); // min, max, initial, step
+        Spinner<Integer> aantalCoresSpinner = new Spinner<>(1, 100, 1);
         addRobotContainer.add(aantalCoresSpinner, 1, 4);
         //***Cache Opslag***
         Label cacheOpslagLabel = new Label("Cache opslag: ");
         addRobotContainer.add(cacheOpslagLabel, 0, 5);
-        Spinner<Integer> cacheOpslagSpinner = new Spinner<>(1, 1000, 0, 10); // min, max, initial, step
+        Spinner<Integer> cacheOpslagSpinner = new Spinner<>(1, 1000, 0, 10);
         addRobotContainer.add(cacheOpslagSpinner, 1, 5);
 
         //***Opslagschijf naam***
@@ -61,7 +61,7 @@ public class AddRobotScreen {
         //***Max Opslag***
         Label maxOpslagLabel = new Label("Max Opslag: ");
         addRobotContainer.add(maxOpslagLabel, 0, 7);
-        Spinner<Integer> maxOpslagSpinner = new Spinner<>(1, Integer.MAX_VALUE, 1, 10); // min, max, initial, step
+        Spinner<Integer> maxOpslagSpinner = new Spinner<>(1, Integer.MAX_VALUE, 1, 10);
         addRobotContainer.add(maxOpslagSpinner, 1, 7);
 
         //***toevoegenKnop***
@@ -77,15 +77,18 @@ public class AddRobotScreen {
                 Processor processor = new Processor(processorNaamVeld.getText(), aantalCoresValue, BigDecimal.valueOf(400), cacheOpslagValue, "ACME");
                 Lichaam lichaam = new Lichaam("SuperRobo", kleurPicker.getValue(), 0, 0);
 
-                robots.add(new Robot(codeVeld.getText(),
-                        naamVeld.getText(),
-                        BigDecimal.ONE,
-                        true,
-                        lichaam,
-                        opslagSchijf,
-                        processor
-                ));
-                addRobotStage.close();
+                if (!naamVeld.getText().isEmpty() && !codeVeld.getText().isEmpty() && !processorNaamVeld.getText().isEmpty() && !opslagschijfNaamVeld.getText().isEmpty()){
+                    robots.add(new Robot(codeVeld.getText(),
+                            naamVeld.getText(),
+                            BigDecimal.ONE,
+                            true,
+                            lichaam,
+                            opslagSchijf,
+                            processor
+                    ));
+                    addRobotStage.close();
+                }
+
             }
         });
         addRobotStage.setTitle("Robot toevoegen");

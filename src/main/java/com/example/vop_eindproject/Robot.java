@@ -68,6 +68,16 @@ public class Robot {
         return maxOpslag;
     }
 
+    public int geefGebruiktOpslag(){
+        int gebruiktOpslag = 0;
+
+        for (int i = 0; i < opslagSchijven.size(); i++) {
+            gebruiktOpslag += opslagSchijven.get(i).getGebruikteOpslag();
+        }
+
+        return gebruiktOpslag;
+    }
+
     public boolean isActief() {
         return isActief;
     }
@@ -133,9 +143,11 @@ public class Robot {
             return null;
         }
 
-        if (isActief && (accuPercentage.compareTo(BigDecimal.ZERO) > 0)){
+        if (isActief && (accuPercentage.compareTo(BigDecimal.ZERO) > 0) &&(geefMaxOpslag() > geefGebruiktOpslag())){
             accuPercentage = accuPercentage.subtract(BigDecimal.valueOf(0.01));
-            return processor.bereken(getal1, getal2, neket);
+            Integer result = processor.bereken(getal1, getal2, neket);
+            slaDataOp(getal1 + " " + neket + " " + getal2 + " = " + result);
+            return result;
         } else {
             return null;
         }
@@ -151,7 +163,6 @@ public class Robot {
         while (dataHasntBeenSaved){
             if (opslagSchijven.get(i).getGebruikteOpslag() < opslagSchijven.get(i).getMaxOpslag()){
                 opslagSchijven.get(i).slaDataOp(data);
-                accuPercentage = accuPercentage.subtract(BigDecimal.valueOf(0.01));
                 dataHasntBeenSaved = false;
             }
 
@@ -199,6 +210,8 @@ public class Robot {
             opslagSchijven.get(0).setMaxOpslag(opslagSchijven.get(0).getMaxOpslag() + 1);
         }
     }
+
+
 
     public void setKleur(Color kleur){
         lichaam.setVerfkleur(kleur);

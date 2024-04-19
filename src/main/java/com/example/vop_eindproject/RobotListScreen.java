@@ -26,17 +26,14 @@ public class RobotListScreen {
         Stage robotListStage = new Stage();
 
         TableView<Robot> tableView = new TableView<>();
-        // Define table columns
         TableColumn<Robot, String> naamKolom = new TableColumn<>("Naam");
         TableColumn<Robot, String> accuKolom = new TableColumn<>("Accu");
         TableColumn<Robot, String> opslagKolom = new TableColumn<>("Opslag");
         TableColumn<Robot, String> plaatsKolom = new TableColumn<>("Coördinaten");
 
-        // Set cell value factories
         naamKolom.setCellValueFactory(new PropertyValueFactory<>("naam"));
         accuKolom.setCellValueFactory(new PropertyValueFactory<>("accuPercentage"));
 
-        // Define cell value factory for opslagKolom using custom Callback
         opslagKolom.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Robot, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Robot, String> param) {
@@ -53,7 +50,6 @@ public class RobotListScreen {
             }
         });
 
-        // Add columns to table view
         tableView.getColumns().addAll(naamKolom, accuKolom, opslagKolom, plaatsKolom);
         tableView.setItems(robots);
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -82,12 +78,13 @@ public class RobotListScreen {
         controlButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                // Close the RobotListScreen stage
-                robotListStage.close();
+                if (tableView.getSelectionModel().getSelectedItem() != null) {
+                    robotListStage.close();
 
-                Stage controlRobotStage =
-                        makeControlRobotStage(tableView.getSelectionModel().getSelectedItem(), robots, tableView);
-                controlRobotStage.show();
+                    Stage controlRobotStage =
+                            makeControlRobotStage(tableView.getSelectionModel().getSelectedItem(), robots, tableView);
+                    controlRobotStage.show();
+                }
             }
 
         });
@@ -95,12 +92,12 @@ public class RobotListScreen {
         editButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                // Close the RobotListScreen stage
-                robotListStage.close();
+                if (tableView.getSelectionModel().getSelectedItem() != null){
+                    robotListStage.close();
+                    Stage editRobotStage = makeEditRobotStage(tableView.getSelectionModel().getSelectedItem(), robots, tableView);
+                    editRobotStage.show();
+                }
 
-                // Open the EditRobotScreen stage
-                Stage editRobotStage = makeEditRobotStage(tableView.getSelectionModel().getSelectedItem(), robots, tableView);
-                editRobotStage.show();
             }
         });
 
@@ -129,9 +126,7 @@ public class RobotListScreen {
     }
 
     public static void refreshList(ObservableList<Robot> updatedRobots, TableView<Robot> tableView) {
-        // Clear the items in the TableView
         tableView.getItems().clear();
-        // Add the updated items to the TableView
         tableView.setItems(updatedRobots);
     }
 

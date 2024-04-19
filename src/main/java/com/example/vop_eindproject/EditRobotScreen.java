@@ -28,7 +28,7 @@ public class EditRobotScreen {
 
         naamVeld.setText(robot.getNaam());
         //***Kleur***
-        Color defaultColor = robot.geefKleur(); // Set your default color here
+        Color defaultColor = robot.geefKleur();
         Label kleurLabel = new Label("Kleur: ");
         addRobotContainer.add(kleurLabel, 0, 2);
         ColorPicker kleurPicker = new ColorPicker(defaultColor);
@@ -62,7 +62,7 @@ public class EditRobotScreen {
         //***Max Opslag***
         Label maxOpslagLabel = new Label("Max Opslag: ");
         addRobotContainer.add(maxOpslagLabel, 0, 7);
-        Spinner<Integer> maxOpslagSpinner = new Spinner<>(robot.geefMaxOpslag(), Integer.MAX_VALUE, robot.geefMaxOpslag(), 10); // min, max, initial, step
+        Spinner<Integer> maxOpslagSpinner = new Spinner<>(robot.geefMaxOpslag(), Integer.MAX_VALUE, robot.geefMaxOpslag(), 10);
         addRobotContainer.add(maxOpslagSpinner, 1, 7);
 
         // *** Delete Button ***
@@ -91,7 +91,6 @@ public class EditRobotScreen {
         wijzigenKnop.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                // Update robot's data
                 robot.setNaam(naamVeld.getText());
                 robot.setKleur(kleurPicker.getValue());
                 robot.setProcessorNaam(processorNaamVeld.getText());
@@ -100,10 +99,8 @@ public class EditRobotScreen {
                 robot.setOpslagSchijfNaam(opslagschijfNaamVeld.getText());
                 robot.setMaxOpslag(maxOpslagSpinner.getValue());
 
-                // Close the EditRobotScreen stage
                 editRobotStage.close();
 
-                // Open the RobotListScreen again
                 Stage robotListStage = RobotListScreen.makeRobotStage(robots);
                 robotListStage.show();
             }

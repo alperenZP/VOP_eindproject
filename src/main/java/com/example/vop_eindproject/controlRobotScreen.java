@@ -20,41 +20,32 @@ public class controlRobotScreen {
     public static Stage makeControlRobotStage(Robot robot, ObservableList<Robot> robots, TableView<Robot> tableView) {
         Stage primaryStage = new Stage();
 
-        // Create the root VBox to hold the battery, D-pad, and grid with the red triangle
-        VBox root = new VBox(10);
+        HBox root = new HBox(150);
         root.setPadding(new Insets(10));
 
-        // Create an HBox to hold the battery and D-pad
         HBox batteryAndDpad = new HBox(10);
 
-        // Create a rectangle to represent the battery outline
         Rectangle batteryOutline = new Rectangle(100, 50);
         batteryOutline.setFill(null);
-        batteryOutline.setStroke(null); // Remove the stroke to hide the border
+        batteryOutline.setStroke(null);
 
-        // Create a VBox to hold the battery filling and percentage label
         VBox batteryContent = new VBox();
         batteryContent.setAlignment(Pos.CENTER);
 
         BigDecimal accu = robot.getAccuPercentage().multiply(BigDecimal.valueOf(100));
 
-        // Create a rectangle to represent the battery filling
         Rectangle batteryFill = new Rectangle(40, accu.doubleValue());
         batteryFill.setFill(Color.LIGHTGREEN);
 
-        // Create a label to display the percentage inside the battery
 
         Label percentageLabel = new Label(accu+ "%");
         percentageLabel.setStyle("-fx-font-size: 14pt;");
 
-        // Add the battery filling and percentage label to the battery content VBox
         batteryContent.getChildren().addAll(batteryFill, percentageLabel);
 
-        // Create a VBox to hold the D-pad buttons
         VBox dPad = new VBox(10);
         dPad.setAlignment(Pos.CENTER);
 
-        // Create arrow buttons for the D-pad
         Button upButton = new Button("↑");
         Button downButton = new Button("↓");
         Button leftButton = new Button("←");
@@ -65,14 +56,11 @@ public class controlRobotScreen {
 
 
 
-        // Add the arrow buttons to the D-pad VBox
         dPad.getChildren().addAll(terugNaarLijst, upButton, downButton, leftButton, rightButton, coordinatenLabel);
 
-        // Create a Pane to hold the grid with the red triangle
         Pane gridPane = new Pane();
         gridPane.setPrefSize(200, 200);
 
-        // Create a rectangle grid
         for (int row = 0; row < 5; row++) {
             for (int col = 0; col < 5; col++) {
                 Rectangle square = new Rectangle(40, 40);
@@ -84,7 +72,6 @@ public class controlRobotScreen {
             }
         }
 
-        // Create a red triangle
         Polygon triangle = new Polygon();
         triangle.getPoints().addAll(
                 0.0, -5.0,
@@ -172,58 +159,60 @@ public class controlRobotScreen {
         terugNaarLijst.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                // Close the EditRobotScreen stage
                 primaryStage.close();
 
-                // Open the RobotListScreen again
                 Stage robotListStage = RobotListScreen.makeRobotStage(robots);
                 robotListStage.show();
             }
         });
 
 
-        // Add the red triangle to the gridPane
         gridPane.getChildren().add(triangle);
 
-        // Add the battery, D-pad, and grid to the batteryAndDpad HBox
         batteryAndDpad.getChildren().addAll(batteryOutline, batteryContent, dPad);
 
-        // Create an HBox to hold the input field and square label
-        HBox inputBox = new HBox(10);
+        VBox inputBox = new VBox(10);
         inputBox.setAlignment(Pos.CENTER);
 
-        // Create the input field
-        TextField numberField1 = new TextField();
+        Spinner<Integer> numberField1 = new Spinner<>();
+        numberField1.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(Integer.MIN_VALUE, Integer.MAX_VALUE, 0));
+        numberField1.setEditable(true);
         numberField1.setPromptText("Eerste getal");
-        TextField operatorField = new TextField();
-        operatorField.setPromptText("Toestandsteken");
-        TextField numberField2 = new TextField();
+
+        Spinner<Integer> numberField2 = new Spinner<>();
+        numberField2.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(Integer.MIN_VALUE, Integer.MAX_VALUE, 0));
+        numberField2.setEditable(true);
         numberField2.setPromptText("Tweede getal");
 
-        // Create the label to display the square of the entered number
+        ComboBox<String> operatorField = new ComboBox<>();
+        operatorField.getItems().addAll("*", "+", "-", "/");
+        operatorField.setPromptText("Toestandsteken");
+
+
         Label squareLabel = new Label();
 
-        // Create the button to calculate the square
         Button calculateButton = new Button("Bereken");
         calculateButton.setOnAction(e -> {
-            int number1 = Integer.parseInt(numberField1.getText());
-            int number2 = Integer.parseInt(numberField2.getText());
-            String toestandsteken = String.valueOf(operatorField.getText());
-            int resultaat = robot.maakBerekening(number1, number2, toestandsteken);
+            int number1 = Integer.parseInt(String.valueOf(numberField1.getValue()));
+            int number2 = Integer.parseInt(String.valueOf(numberField2.getValue()));
+            String toestandsteken = String.valueOf(operatorField.getValue());
+            Integer resultaat = robot.maakBerekening(number1, number2, toestandsteken);
             percentageLabel.setText(robot.getAccuPercentage().multiply(BigDecimal.valueOf(100))+ "%");
             batteryFill.setHeight(robot.getAccuPercentage().multiply(BigDecimal.valueOf(100)).doubleValue());
 
-            squareLabel.setText("Resultaat: " + resultaat);
+            if (resultaat != null){
+                squareLabel.setText("Resultaat: " + resultaat);
+            } else {
+                squareLabel.setText("Ongeldige invoer");
+            }
+
+
         });
 
-        // Add the input field, button, and square label to the inputBox HBox
         inputBox.getChildren().addAll(numberField1, operatorField, numberField2, calculateButton, squareLabel);
 
-        // Add the battery, D-pad, grid, and input field to the root VBox
         root.getChildren().addAll(batteryAndDpad, gridPane, inputBox);
-        // Set the margin for the batteryContent VBox to align the percentage label inside the battery filling
 
-        // Create the scene and set it on the stage
         Scene scene = new Scene(root, 850, 478);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Control Robot Screen");

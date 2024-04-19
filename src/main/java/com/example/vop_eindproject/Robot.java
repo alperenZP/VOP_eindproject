@@ -130,7 +130,7 @@ public class Robot {
         } else if (Objects.equals(teken, "*")){
             neket = Teken.VERMENIGVULDIG;
         } else {
-            neket = Teken.PLUS;
+            return null;
         }
 
         if (isActief && (accuPercentage.compareTo(BigDecimal.ZERO) > 0)){

@@ -1,10 +1,12 @@
 package com.example.vop_eindproject;
 
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
@@ -34,12 +36,14 @@ public class controlRobotScreen {
         VBox batteryContent = new VBox();
         batteryContent.setAlignment(Pos.CENTER);
 
+        BigDecimal accu = robot.getAccuPercentage().multiply(BigDecimal.valueOf(100));
+
         // Create a rectangle to represent the battery filling
-        Rectangle batteryFill = new Rectangle(40, 90);
+        Rectangle batteryFill = new Rectangle(40, accu.doubleValue());
         batteryFill.setFill(Color.LIGHTGREEN);
 
         // Create a label to display the percentage inside the battery
-        BigDecimal accu = robot.getAccuPercentage().multiply(BigDecimal.valueOf(100));
+
         Label percentageLabel = new Label(accu+ "%");
         percentageLabel.setStyle("-fx-font-size: 14pt;");
 
@@ -55,13 +59,14 @@ public class controlRobotScreen {
         Button downButton = new Button("↓");
         Button leftButton = new Button("←");
         Button rightButton = new Button("→");
+        Button terugNaarLijst = new Button("Terug");
 
         Label coordinatenLabel = new Label(robot.geefHuidigeLocatie());
 
 
 
         // Add the arrow buttons to the D-pad VBox
-        dPad.getChildren().addAll(upButton, downButton, leftButton, rightButton, coordinatenLabel);
+        dPad.getChildren().addAll(terugNaarLijst, upButton, downButton, leftButton, rightButton, coordinatenLabel);
 
         // Create a Pane to hold the grid with the red triangle
         Pane gridPane = new Pane();
@@ -96,51 +101,86 @@ public class controlRobotScreen {
         upButton.setOnAction(e -> {
             robot.loopVooruit();
             coordinatenLabel.setText(robot.geefHuidigeLocatie());
-            if (trianglegridposy.get() < 2){
-                triangle.setLayoutY(triangle.getLayoutY()-40);
-                trianglegridposy.getAndIncrement();
-            } else {
-                triangle.setLayoutY(triangle.getLayoutY()+160);
-                trianglegridposy.set(-2);
-            }
+            percentageLabel.setText(robot.getAccuPercentage().multiply(BigDecimal.valueOf(100))+ "%");
+            batteryFill.setHeight(robot.getAccuPercentage().multiply(BigDecimal.valueOf(100)).doubleValue());
 
+            if (robot.getAccuPercentage().compareTo(BigDecimal.ZERO) > 0) {
+                batteryFill.setY(batteryFill.getY());
+                if (trianglegridposy.get() < 2){
+                    triangle.setLayoutY(triangle.getLayoutY()-40);
+                    trianglegridposy.getAndIncrement();
+                } else {
+                    triangle.setLayoutY(triangle.getLayoutY()+160);
+                    trianglegridposy.set(-2);
+                }
+            }
         });
         downButton.setOnAction(e -> {
             robot.loopTerug();
             coordinatenLabel.setText(robot.geefHuidigeLocatie());
+            percentageLabel.setText(robot.getAccuPercentage().multiply(BigDecimal.valueOf(100))+ "%");
+            batteryFill.setHeight(robot.getAccuPercentage().multiply(BigDecimal.valueOf(100)).doubleValue());
 
-            if (trianglegridposy.get() > -2){
-                triangle.setLayoutY(triangle.getLayoutY()+40);
-                trianglegridposy.getAndDecrement();
-            } else {
-                triangle.setLayoutY(triangle.getLayoutY()-160);
-                trianglegridposy.set(2);
+            if (robot.getAccuPercentage().compareTo(BigDecimal.ZERO) > 0) {
+                if (trianglegridposy.get() > -2){
+                    triangle.setLayoutY(triangle.getLayoutY()+40);
+                    trianglegridposy.getAndDecrement();
+                } else {
+                    triangle.setLayoutY(triangle.getLayoutY()-160);
+                    trianglegridposy.set(2);
+                }
             }
+
         });
 
         rightButton.setOnAction(e -> {
             robot.loopRechts();
             coordinatenLabel.setText(robot.geefHuidigeLocatie());
-            if (trianglegridposx.get() < 2){
-                triangle.setLayoutX(triangle.getLayoutX()+40);
-                trianglegridposx.getAndIncrement();
-            } else {
-                triangle.setLayoutX(triangle.getLayoutX()-160);
-                trianglegridposx.set(-2);
+            percentageLabel.setText(robot.getAccuPercentage().multiply(BigDecimal.valueOf(100))+ "%");
+            batteryFill.setHeight(robot.getAccuPercentage().multiply(BigDecimal.valueOf(100)).doubleValue());
+
+            if (robot.getAccuPercentage().compareTo(BigDecimal.ZERO) > 0) {
+                if (trianglegridposx.get() < 2){
+                    triangle.setLayoutX(triangle.getLayoutX()+40);
+                    trianglegridposx.getAndIncrement();
+                } else {
+                    triangle.setLayoutX(triangle.getLayoutX()-160);
+                    trianglegridposx.set(-2);
+                }
             }
+
         });
 
         leftButton.setOnAction(e -> {
             robot.loopLinks();
             coordinatenLabel.setText(robot.geefHuidigeLocatie());
-            if (trianglegridposx.get() > -2){
-                triangle.setLayoutX(triangle.getLayoutX()-40);
-                trianglegridposx.getAndDecrement();
-            } else {
-                triangle.setLayoutX(triangle.getLayoutX()+160);
-                trianglegridposx.set(2);
+            percentageLabel.setText(robot.getAccuPercentage().multiply(BigDecimal.valueOf(100))+ "%");
+            batteryFill.setHeight(robot.getAccuPercentage().multiply(BigDecimal.valueOf(100)).doubleValue());
+
+            if (robot.getAccuPercentage().compareTo(BigDecimal.ZERO) > 0) {
+                if (trianglegridposx.get() > -2){
+                    triangle.setLayoutX(triangle.getLayoutX()-40);
+                    trianglegridposx.getAndDecrement();
+                } else {
+                    triangle.setLayoutX(triangle.getLayoutX()+160);
+                    trianglegridposx.set(2);
+                }
+            }
+
+        });
+
+        terugNaarLijst.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                // Close the EditRobotScreen stage
+                primaryStage.close();
+
+                // Open the RobotListScreen again
+                Stage robotListStage = RobotListScreen.makeRobotStage(robots);
+                robotListStage.show();
             }
         });
+
 
         // Add the red triangle to the gridPane
         gridPane.getChildren().add(triangle);
@@ -170,6 +210,9 @@ public class controlRobotScreen {
             int number2 = Integer.parseInt(numberField2.getText());
             String toestandsteken = String.valueOf(operatorField.getText());
             int resultaat = robot.maakBerekening(number1, number2, toestandsteken);
+            percentageLabel.setText(robot.getAccuPercentage().multiply(BigDecimal.valueOf(100))+ "%");
+            batteryFill.setHeight(robot.getAccuPercentage().multiply(BigDecimal.valueOf(100)).doubleValue());
+
             squareLabel.setText("Resultaat: " + resultaat);
         });
 
@@ -179,7 +222,6 @@ public class controlRobotScreen {
         // Add the battery, D-pad, grid, and input field to the root VBox
         root.getChildren().addAll(batteryAndDpad, gridPane, inputBox);
         // Set the margin for the batteryContent VBox to align the percentage label inside the battery filling
-        VBox.setMargin(batteryContent, new Insets(5, 0, 5, 0));
 
         // Create the scene and set it on the stage
         Scene scene = new Scene(root, 850, 478);

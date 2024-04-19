@@ -65,7 +65,7 @@ public class RobotListScreen {
             controlButton.setMinSize(200, 50);
         Button editButton = new Button("Wijzigen");
             editButton.setMinSize(200, 50);
-        Button returnButton = new Button("Terug");
+        Button returnButton = new Button("Sluit af");
             returnButton.setMinSize(200, 50);
 
 
@@ -82,6 +82,9 @@ public class RobotListScreen {
         controlButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                // Close the RobotListScreen stage
+                robotListStage.close();
+
                 Stage controlRobotStage =
                         makeControlRobotStage(tableView.getSelectionModel().getSelectedItem(), robots, tableView);
                 controlRobotStage.show();
@@ -98,6 +101,13 @@ public class RobotListScreen {
                 // Open the EditRobotScreen stage
                 Stage editRobotStage = makeEditRobotStage(tableView.getSelectionModel().getSelectedItem(), robots, tableView);
                 editRobotStage.show();
+            }
+        });
+
+        returnButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                robotListStage.close();
             }
         });
 

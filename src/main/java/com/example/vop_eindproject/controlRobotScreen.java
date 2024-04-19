@@ -67,7 +67,7 @@ public class controlRobotScreen {
                 square.setFill(Color.WHITE);
                 square.setStroke(Color.BLACK);
                 square.setX(col * 40);
-                square.setY(row * 40);
+                square.setY(row * 40 + 100); // Move 50 pixels down
                 gridPane.getChildren().add(square);
             }
         }
@@ -80,7 +80,7 @@ public class controlRobotScreen {
         );
         triangle.setFill(Color.RED);
         triangle.setLayoutX(100);
-        triangle.setLayoutY(100);
+        triangle.setLayoutY(100 + 100); // Move 50 pixels down
 
         AtomicInteger trianglegridposx = new AtomicInteger();
         AtomicInteger trianglegridposy = new AtomicInteger();
